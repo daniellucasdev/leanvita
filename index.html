@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LeanVita — Transforme seu corpo</title>
+<meta name="description" content="LeanVita — página de demonstração de landing page para produto de emagrecimento.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Ctext%20y='.9em'%20font-size='90'%3E%F0%9F%8C%BF%3C/text%3E%3C/svg%3E">
+<style>
+  :root {
+    --verde: #16a34a;
+    --verde-claro: #f0fdf4;
+    --verde-forte: #14532d;
+    --laranja: #f97316;
+    --texto: #1f2937;
+    --cinza: #6b7280;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; color: var(--texto); background: #fff; }
+  section { padding: 3.5rem 1.25rem; }
+  .wrap { max-width: 1000px; margin: 0 auto; }
+  h2 { font-size: clamp(1.5rem, 5vw, 2.2rem); text-align: center; margin-bottom: .4rem; }
+  .sub { text-align: center; color: var(--cinza); margin-bottom: 2.2rem; }
+  .btn {
+    display: inline-block; background: var(--verde); color: #fff;
+    padding: 1rem 2.2rem; border-radius: 999px; font-weight: 700;
+    text-decoration: none; font-size: 1.05rem;
+    box-shadow: 0 6px 20px rgba(22, 163, 74, .35);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(22, 163, 74, .45); }
+
+  /* ---------- header ---------- */
+  header {
+    position: sticky; top: 0; z-index: 10;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: .8rem 1.25rem;
+    background: rgba(255,255,255,.92); backdrop-filter: blur(8px);
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .logo { font-weight: 800; font-size: 1.15rem; color: var(--verde-forte); }
+  .logo span { color: var(--laranja); }
+  header .btn { padding: .55rem 1.2rem; font-size: .9rem; }
+
+  /* ---------- hero ---------- */
+  .hero {
+    background: linear-gradient(165deg, var(--verde-claro), #fff 80%);
+    text-align: center;
+    padding-top: 4rem;
+  }
+  .hero .selo {
+    display: inline-block; background: #fff; border: 1px solid #bbf7d0;
+    color: var(--verde-forte); font-size: .8rem; font-weight: 700;
+    padding: .35rem 1rem; border-radius: 999px; margin-bottom: 1.2rem;
+  }
+  .hero h1 { font-size: clamp(2rem, 7.5vw, 3.4rem); line-height: 1.15; letter-spacing: -.02em; }
+  .hero h1 em { font-style: normal; color: var(--verde); }
+  .hero p { color: var(--cinza); font-size: 1.1rem; max-width: 520px; margin: 1rem auto 1.8rem; }
+  .hero .prova { margin-top: 1.2rem; font-size: .85rem; color: var(--cinza); }
+  .hero .prova b { color: var(--texto); }
+
+  /* ---------- beneficios ---------- */
+  .cards { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+  @media (min-width: 640px) { .cards { grid-template-columns: repeat(3, 1fr); } }
+  .card {
+    background: var(--verde-claro);
+    border-radius: 18px;
+    padding: 1.5rem 1.3rem;
+    text-align: center;
+    transition: transform .25s;
+  }
+  .card:hover { transform: translateY(-4px); }
+  .card .ico { font-size: 2rem; }
+  .card h3 { margin: .6rem 0 .4rem; font-size: 1.05rem; }
+  .card p { color: var(--cinza); font-size: .9rem; line-height: 1.55; }
+
+  /* ---------- como funciona ---------- */
+  .passos { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+  @media (min-width: 640px) { .passos { grid-template-columns: repeat(3, 1fr); } }
+  .passo { text-align: center; padding: 1rem; }
+  .passo .num {
+    width: 46px; height: 46px; border-radius: 50%;
+    background: var(--verde); color: #fff; font-weight: 800; font-size: 1.2rem;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto .8rem;
+  }
+  .passo h3 { font-size: 1rem; margin-bottom: .3rem; }
+  .passo p { color: var(--cinza); font-size: .9rem; }
+
+  /* ---------- depoimentos ---------- */
+  .depo { background: var(--verde-forte); color: #fff; }
+  .depo h2 { color: #fff; }
+  .depo .sub { color: #bbf7d0; }
+  .quotes { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+  @media (min-width: 640px) { .quotes { grid-template-columns: repeat(3, 1fr); } }
+  .quote { background: rgba(255,255,255,.08); border-radius: 16px; padding: 1.4rem; font-size: .95rem; line-height: 1.6; }
+  .quote .quem { margin-top: .9rem; font-size: .82rem; color: #bbf7d0; font-weight: 700; }
+  .quote .estrelas { color: #facc15; letter-spacing: .1em; margin-bottom: .5rem; }
+
+  /* ---------- oferta ---------- */
+  .oferta-box {
+    max-width: 430px; margin: 0 auto;
+    background: #fff; border: 2px solid #bbf7d0;
+    border-radius: 22px; padding: 2rem 1.6rem; text-align: center;
+    box-shadow: 0 14px 40px rgba(22, 163, 74, .14);
+    position: relative;
+  }
+  .oferta-box .tag {
+    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+    background: var(--laranja); color: #fff; font-size: .75rem; font-weight: 800;
+    padding: .3rem 1.1rem; border-radius: 999px; letter-spacing: .05em; white-space: nowrap;
+  }
+  .preco { font-size: 2.8rem; font-weight: 800; color: var(--verde-forte); margin: .8rem 0 .2rem; }
+  .preco small { font-size: 1rem; color: var(--cinza); font-weight: 400; }
+  .de { color: var(--cinza); text-decoration: line-through; font-size: 1rem; }
+  .oferta-box ul { list-style: none; margin: 1.3rem 0 1.6rem; }
+  .oferta-box li { padding: .45rem 0; font-size: .95rem; }
+  .oferta-box li::before { content: '✓ '; color: var(--verde); font-weight: 800; }
+  .garantia { margin-top: 1rem; font-size: .8rem; color: var(--cinza); }
+
+  /* ---------- faq ---------- */
+  .faq { max-width: 640px; margin: 0 auto; }
+  details {
+    background: var(--verde-claro); border-radius: 14px;
+    padding: 1rem 1.3rem; margin-bottom: .7rem;
+  }
+  summary { font-weight: 700; cursor: pointer; font-size: .98rem; }
+  details p { margin-top: .7rem; color: var(--cinza); font-size: .92rem; line-height: 1.6; }
+
+  footer {
+    text-align: center; padding: 2.5rem 1.25rem 3rem;
+    color: var(--cinza); font-size: .78rem; line-height: 1.7;
+    border-top: 1px solid #e5e7eb;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <span class="logo">Lean<span>Vita</span></span>
+  <a href="#oferta" class="btn">Quero começar</a>
+</header>
+
+<section class="hero">
+  <span class="selo">🌿 100% natural · Aprovado por quem testou</span>
+  <h1>Desperte a sua <em>versão mais leve</em></h1>
+  <p>LeanVita acompanha sua rotina com um blend natural que ajuda a controlar a vontade de beliscar — e a manter o foco nos seus objetivos.</p>
+  <a href="#oferta" class="btn">QUERO EXPERIMENTAR AGORA</a>
+  <p class="prova">🔥 <b>+12.400 pessoas</b> já começaram · 📦 frete grátis para todo o Brasil</p>
+</section>
+
+<section id="beneficios">
+  <div class="wrap">
+    <h2>Por que o LeanVita?</h2>
+    <p class="sub">Três pilares para uma rotina mais leve</p>
+    <div class="cards">
+      <div class="card"><div class="ico">🚫🍪</div><h3>Controla a vontade de beliscar</h3><p>Ingredientes que ajudam a dar saciedade entre as refeições.</p></div>
+      <div class="card"><div class="ico">⚡️</div><h3>Energia para o dia</h3><p>Composição natural que apoia a disposição sem cafeína em excesso.</p></div>
+      <div class="card"><div class="ico">🧘‍♀️</div><h3>Rotina sem complicação</h3><p>Cápsulas fáceis de incluir no dia a dia, sem dietas malucas.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="como-funciona" style="background:#f9fafb">
+  <div class="wrap">
+    <h2>Como funciona</h2>
+    <p class="sub">Simples assim</p>
+    <div class="passos">
+      <div class="passo"><div class="num">1</div><h3>Peça o seu kit</h3><p>Escolha o plano e receba em casa com frete grátis.</p></div>
+      <div class="passo"><div class="num">2</div><h3>Use todos os dias</h3><p>2 cápsulas ao dia, 30 min antes do almoço.</p></div>
+      <div class="passo"><div class="num">3</div><h3>Sinta a diferença</h3><p>Combine com água, movimento e paciência. O corpo agradece.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="depoimentos" class="depo">
+  <div class="wrap">
+    <h2>Quem já usa, indica</h2>
+    <p class="sub">Depoimentos de clientes (fictícios — página demonstrativa)</p>
+    <div class="quotes">
+      <div class="quote"><div class="estrelas">★★★★★</div>"Encaixou na minha rotina sem sofrimento. Já é meu terceiro pote."<div class="quem">Mariana S., 34 · Curitiba</div></div>
+      <div class="quote"><div class="estrelas">★★★★★</div>"O que mais mudou foi a vontade de beliscar à noite. Sumiu."<div class="quem">Carlos H., 41 · Recife</div></div>
+      <div class="quote"><div class="estrelas">★★★★☆</div>"Junto com caminhada diária, os resultados vieram no segundo mês."<div class="quem">Juliana P., 28 · Salvador</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="oferta">
+  <div class="wrap">
+    <h2>Oferta de lançamento</h2>
+    <p class="sub">Condição especial por tempo limitado</p>
+    <div class="oferta-box">
+      <span class="tag">50% OFF HOJE</span>
+      <span class="de">De R$ 197,00</span>
+      <div class="preco">R$ 97,00 <small>/ pote</small></div>
+      <ul>
+        <li>30 dias de tratamento</li>
+        <li>Frete grátis para todo o Brasil</li>
+        <li>Guia de receitas leves de brinde</li>
+        <li>Garantia de 30 dias</li>
+      </ul>
+      <a href="#" class="btn">GARANTIR O MEU COM DESCONTO</a>
+      <p class="garantia">🔒 Compra segura · Garantia incondicional de 30 dias</p>
+    </div>
+  </div>
+</section>
+
+<section id="faq" style="background:#f9fafb">
+  <div class="wrap">
+    <h2>Perguntas frequentes</h2>
+    <p class="sub">Dúvidas? A gente responde</p>
+    <div class="faq">
+      <details><summary>Em quanto tempo vejo resultados?</summary><p>Os primeiros relatos de uso falam em 3 a 4 semanas, sempre combinando com alimentação equilibrada e movimento.</p></details>
+      <details><summary>Preciso fazer dieta radical?</summary><p>Não. O LeanVita foi pensado para caber numa rotina real: nada de cortar grupos alimentares inteiros.</p></details>
+      <details><summary>Tem contraindicação?</summary><p>Como qualquer suplemento, gestantes, lactantes e pessoas em tratamento médico devem consultar um profissional antes de usar.</p></details>
+      <details><summary>E se não funcionar para mim?</summary><p>Você tem 30 dias de garantia incondicional: devolvemos 100% do valor.</p></details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <b>LeanVita</b> — página de demonstração. Produto fictício, criado apenas como exemplo de landing page.<br>
+  Este site não vende nada e não substitui orientação médica ou nutricional profissional.
+</footer>
+
+</body>
+</html>
